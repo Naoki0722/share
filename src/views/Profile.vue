@@ -3,7 +3,16 @@
     <SideNavi></SideNavi>
     <div class="right">
       <div class="title">
-        <p>ホーム</p>
+        <p>プロフィール</p>
+      </div>
+      <div class="profile flexbox">
+        <div>
+          <p class="p-name">{{name}}</p>
+          <p class="p-content">{{profile}}</p>
+        </div>
+        <div>
+          <button type="submit">変更する</button>
+        </div>
       </div>
       <Message></Message>
     </div>
@@ -15,6 +24,12 @@ import SideNavi from "../components/SideNavi.vue";
 import Message from "../components/Message.vue";
 
 export default {
+  data() {
+    return {
+      name: "太郎",
+      profile: "私は太郎です" 
+    }
+  },
   components: {
     SideNavi,
     Message
@@ -23,11 +38,6 @@ export default {
 </script>
 
 <style scoped>
-.left {
-  width: 30%;
-  height: 100vh;
-}
-
 .flex {
   display: flex;
 }
@@ -35,33 +45,6 @@ export default {
 .flexbox {
   display: flex;
   align-items: center;
-}
-
-.header-logo img {
-  width: 200px;
-  margin: 10px 10px 20px;
-}
-
-.icon-field {
-  margin: 10px 20px;
-}
-
-.icon-field img {
-  width: 35px;
-  margin-right: 20px;
-}
-
-.share {
-  margin: 15px;
-}
-
-.share textarea {
-  margin: 15px 0;
-  height: 120px;
-  background-color: #15202b;
-  border: 1px solid white;
-  border-radius: 5px;
-  width: 85%;
 }
 
 button {
@@ -86,28 +69,19 @@ button {
   font-weight: bold;
 }
 
-.message {
-  padding: 20px;
+.profile {
   border-bottom: solid 1px white;
   border-left: solid 1px white;
+  justify-content:space-between;
+  padding: 20px;
 }
 
-.name {
+.p-name {
   font-size: 18px;
   font-weight: bold;
-  margin-right: 10px;
 }
 
-.icon {
-  width: 35px;
-  padding: 0 5px;
-}
-
-.detail {
-  margin-left: 50px;
-}
-
-.shares {
+.p-content {
   margin-top: 10px;
 }
 </style>
