@@ -4,15 +4,15 @@
         <img src="../assets/logo 2.png">
       </div>
       <div class="left-content">
-        <div class="icon-field flexbox">
+        <div class="icon-field flexbox" @click="$router.push('/home')">
           <img src="../assets/home.png">
           <p>ホーム</p>
         </div>
-        <div class="icon-field flexbox">
+        <div class="icon-field flexbox" @click="$router.push('/profile')">
           <img src="../assets/profile.png">
           <p>プロフィール</p>
         </div>
-        <div class="icon-field flexbox">
+        <div class="icon-field flexbox" @click="$store.dispatch('logout')">
           <img src="../assets/logout.png">
           <p>ログアウト</p>
         </div>

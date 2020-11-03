@@ -7,7 +7,7 @@
       <input type="text" placeholder="プロフィール">
       <input type="email" placeholder="メールアドレス">
       <input type="password" placeholder="パスワード">
-      <button type="submit">新規登録</button>
+      <button @click="auth">新規登録</button>
     </div>
   </div>
 </template>

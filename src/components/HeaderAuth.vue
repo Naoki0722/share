@@ -5,8 +5,8 @@
   </div>
   <div class="right">
     <ul class="flex">
-      <li><a href="#">新規登録</a></li>
-      <li><a href="#">ログイン</a></li>
+      <li @click="$router.push('/signup')">新規登録</li>
+      <li @click="$router.push('/')">ログイン</li>
     </ul>
   </div>
 </div>
@@ -27,6 +27,7 @@
 .right li {
   list-style: none;
   margin: 0 20px;
+  cursor: pointer;
 }
 
 .right a {
