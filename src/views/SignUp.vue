@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import HeaderAuth from "../components/HeaderAuth.vue";
+import HeaderAuth from "../components/HeaderAuth";
 import axios from "axios";
 export default {
   data() {
@@ -22,19 +22,20 @@ export default {
       profile: "",
       email: "",
       password: ""
-    }
+    };
   },
   components: {
     HeaderAuth
   },
   methods: {
     auth() {
-      axios.post("https://stormy-sea-56567.herokuapp.com/api/register",{
-        name: this.name,
-        profile: this.profile,
-        email: this.email,
-        password: this.password
-      })
+      axios
+        .post("https://stormy-sea-56567.herokuapp.com/api/register", {
+          name: this.name,
+          profile: this.profile,
+          email: this.email,
+          password: this.password
+        })
         .then(response => {
           console.log(response);
           this.$router.replace("/");
