@@ -3,9 +3,9 @@
     <HeaderAuth></HeaderAuth>
     <div class="card">
       <p>ログイン</p>
-      <input type="email" placeholder="メールアドレス">
-      <input type="password" placeholder="パスワード">
-      <button type="submit">ログイン</button>
+      <input type="email" placeholder="メールアドレス" v-model="mail">
+      <input type="password" placeholder="パスワード" v-model="password">
+      <button @click="auth">ログイン</button>
     </div>
   </div>
 </template>
@@ -13,8 +13,22 @@
 <script>
 import HeaderAuth from "../components/HeaderAuth.vue";
 export default {
+  data() {
+    return {
+      mail: "",
+      password: ""
+    }
+  },
   components: {
     HeaderAuth
+  },
+  methods: {
+    auth() {
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password
+      })
+    }
   }
 }
 </script>

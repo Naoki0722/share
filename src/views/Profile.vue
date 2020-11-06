@@ -8,11 +8,12 @@
       <div class="profile flexbox">
         <div>
           <p class="p-name">{{name}}</p>
-          <p class="p-content">{{profile}}</p>
         </div>
         <div>
           <button type="submit">変更する</button>
         </div>
+        <p class="p-content" v-if="active">{{profile}}</p>
+        <input type="text" v-model="profile" v-else >
       </div>
       <Message></Message>
     </div>
@@ -22,13 +23,33 @@
 <script>
 import SideNavi from "../components/SideNavi.vue";
 import Message from "../components/Message.vue";
+import axios from "axios";
 
 export default {
   data() {
     return {
-      name: "太郎",
-      profile: "私は太郎です" 
-    }
+      active: true,
+      name: this.$store.state.user.name,
+      profile: this.$store.state.user.profile
+    };
+  },
+  methods: {
+    edit() {
+      if (!this.active) {
+        axios
+          .put("https://guarded-beyond-52318.herokuapp.com/api/user", {            
+            email: this.$store.state.user.email,
+            profile: this.profile,
+          })
+          .then((response) => {
+            this.$store.dispatch("changeUserData", {
+              profile: this.profile,
+            })
+            console.log(response);
+          });
+      }
+      this.active = !this.active;
+    },
   },
   components: {
     SideNavi,
