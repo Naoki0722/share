@@ -84,7 +84,7 @@ export default {
     del(index) {
       axios
         .delete(
-          "https://guarded-beyond-52318.herokuapp.com/" +
+          "https://stormy-sea-56567.herokuapp.com/" +
             this.shares[index].item.id
         )
         .then((response) => {
@@ -98,12 +98,12 @@ export default {
     async getShares() {
       let data = [];
       let shares = await axios.get(
-        "https://guarded-beyond-52318.herokuapp.com/"
+        "https://stormy-sea-56567.herokuapp.com/"
       );
       for (let i = 0; i < shares.data.data.length; i++) {
         await axios
           .get(
-            "https://guarded-beyond-52318.herokuapp.com/" +
+            "https://stormy-sea-56567.herokuapp.com/" +
               shares.data.data[i].id
           )
           .then((response) => {

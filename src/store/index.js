@@ -29,14 +29,14 @@ export default new Vuex.Store({
   actions: {
     async login({ commit }, { email, password }) {
       let responseLogin = await axios.post(
-        "https://guarded-beyond-52318.herokuapp.com/api/login",
+        "https://stormy-sea-56567.herokuapp.com/api/login",
         {
           email: email,
-          password: password
+          password: password,
         }
       );
       let responseUser = await axios.get(
-        "https://guarded-beyond-52318.herokuapp.com/api/user",
+        "https://stormy-sea-56567.herokuapp.com/api/user",
         {
           params: {
             email: email,
@@ -49,7 +49,7 @@ export default new Vuex.Store({
     },
     logout({ commit }) {
       axios
-        .post("https://guarded-beyond-52318.herokuapp.com/api/logout", {
+        .post("https://stormy-sea-56567.herokuapp.com/api/logout", {
           auth: this.state.auth,
         })
         .then((response) => {
@@ -59,7 +59,7 @@ export default new Vuex.Store({
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     },
     changeUserData({ commit }, { profile }) {
       commit("changeUserData", profile);

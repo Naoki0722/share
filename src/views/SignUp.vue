@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     auth() {
-      axios.post("https://guarded-beyond-52318.herokuapp.com/api/register",{
+      axios.post("https://stormy-sea-56567.herokuapp.com/api/register",{
         name: this.name,
         profile: this.profile,
         email: this.email,
