@@ -10,7 +10,7 @@ export default new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
     auth: "",
-    user: ""
+    user: "",
   },
   mutations: {
     auth(state, payload) {
@@ -43,9 +43,9 @@ export default new Vuex.Store({
           },
         }
       );
-      commit('auth', responseLogin.data.auth);
-      commit('user', responseUser.data.data[0]);
-      router.replace('/home');
+      commit("auth", responseLogin.data.auth);
+      commit("user", responseUser.data.data[0]);
+      router.replace("/home");
     },
     logout({ commit }) {
       axios

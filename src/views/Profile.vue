@@ -10,7 +10,7 @@
           <p class="p-name">{{name}}</p>
         </div>
         <div>
-          <button type="submit">変更する</button>
+          <button @click="edit">変更する</button>
         </div>
         <p class="p-content" v-if="active">{{profile}}</p>
         <input type="text" v-model="profile" v-else >
@@ -104,5 +104,9 @@ button {
 
 .p-content {
   margin-top: 10px;
+}
+
+input {
+  color: black;
 }
 </style>

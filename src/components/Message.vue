@@ -1,29 +1,30 @@
 <template>
   <div>
-    <div v-for="(value, index) in shares" :key="index">
+    <div v-for="(value, key,index) in shares" :key="index">
       <div class="message">
         <div class="flexbox">
           <p class="name">{{value.name}}</p>
           <img class="icon" src="../assets/heart.png" @click="fav(key)" alt="">
           <p class="name">{{value.like.length}}</p>
-          <img 
-            class="icon" 
-            src="../assets/cross.png" 
-            @click="del(key)" 
-            alt 
-            v-if="pass && profile"
-          >
-          <img 
+          <img
+            class="icon"
+            src="../assets/cross.png"
+            @click="del(key)"
+            alt
+            v-if="path && profile"
+          />
+          <img
             class="icon detail"
             src="../assets/detail.png"
-            @click="$router.push({
-              path: '/detail/' + value.item.id,
-              params: { id: value.item.id },
-            })
+            @click="
+              $router.push({
+                path: '/detail/' + value.item.id,
+                params: { id: value.item.id },
+              })
             "
-            alt=""
+            alt
             v-if="profile"
-          >
+          />
         </div>
         <p class="shares">{{value.item.share}}</p>
       </div>
@@ -47,15 +48,15 @@ export default {
       let result = this.shares[index].like.some((value) => {
         return value.user_id == this.$store.state.user.id;
       });
-      if(result) {
-        this.shares[index].lile.forEach((element) => {
-          if(element.user_id == this.$store.state.user.id) {
+      if (result) {
+        this.shares[index].like.forEach((element) => {
+          if (element.user_id == this.$store.state.user.id) {
             axios({
               method: "delete",
-              url: "https://guarded-beyond-52318.herokuapp.com/api/like",
+              url: "https://stormy-sea-56567.herokuapp.com/api/like",
               data: {
                 share_id: this.shares[index].item.id,
-                user_id: this.$store.state.user.id
+                user_id: this.$store.state.user.id,
               },
             }).then((response) => {
               console.log(response);
@@ -68,23 +69,23 @@ export default {
         });
       } else {
         axios
-          .post("https://guarded-beyond-52318.herokuapp.com/api/like", {
+          .post("https://stormy-sea-56567.herokuapp.com/api/like", {
             share_id: this.shares[index].item.id,
-            user_id: this.$store.state.user.id
+            user_id: this.$store.state.user.id,
           })
           .then((response) => {
             console.log(response);
             this.$router.go({
               path: this.$router.currentRoute.path,
               force: true,
-            })
-          })
+            });
+          });
       }
     },
     del(index) {
       axios
         .delete(
-          "https://stormy-sea-56567.herokuapp.com/" +
+          "https://stormy-sea-56567.herokuapp.com/api/shares/" +
             this.shares[index].item.id
         )
         .then((response) => {
@@ -98,12 +99,12 @@ export default {
     async getShares() {
       let data = [];
       let shares = await axios.get(
-        "https://stormy-sea-56567.herokuapp.com/"
+        "https://stormy-sea-56567.herokuapp.com/api/shares"
       );
       for (let i = 0; i < shares.data.data.length; i++) {
         await axios
           .get(
-            "https://stormy-sea-56567.herokuapp.com/" +
+            "https://stormy-sea-56567.herokuapp.com/api/shares/" +
               shares.data.data[i].id
           )
           .then((response) => {

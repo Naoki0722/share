@@ -55,7 +55,7 @@ export default {
           console.log(response);
           this.content = "",
           this.$router.go({
-            path: this.$$router.currentRoute.path,
+            path: this.$router.currentRoute.path,
             force: true,
           });
         });
